@@ -1,0 +1,27 @@
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        # SSL configuration
+        #
+        # listen 443 ssl default_server;
+        # listen [::]:443 ssl default_server;
+
+        root /var/www/test/public;
+
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html index.php;
+
+        server_name test;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+
+        location ~ \.php$ {
+               include snippets/fastcgi-php.conf;
+
+               # With php7.0-cgi alone:
+               fastcgi_pass php;
+        }
+}

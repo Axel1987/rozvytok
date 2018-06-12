@@ -1,0 +1,57 @@
+version: "2"
+networks:
+  backend:
+
+services:
+  nginx:
+    image: nginx
+    ports:
+      - ${SERVER_PORT}:80
+    depends_on:
+      - php
+      - database
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_TYPE=${DB_TYPE}
+    volumes:
+      - "./api:/api"
+      - "./docker/nginx:/etc/nginx"
+    networks:
+      backend:
+        aliases:
+          - nginx
+
+  php:
+    build: "./docker/php"
+    volumes:
+      - "./api:/api"
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_TYPE=${DB_TYPE}
+    networks:
+      backend:
+        aliases:
+          - php
+
+  database:
+      image: mysql:5.7
+      ports:
+       - ${DB_EXTERNAL_PORT}:${DB_PORT}
+      environment:
+       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+       - MYSQL_DATABASE=${DB_DATABASE}
+       - MYSQL_USER=${DB_USERNAME}
+      volumes:
+       - "./docker/mysql/data:/var/lib/mysql"
+      networks:
+        backend:
+          aliases:
+            - database
