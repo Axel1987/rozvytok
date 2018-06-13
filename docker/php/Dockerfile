@@ -6,4 +6,4 @@ RUN docker-php-ext-install mysqli pdo_mysql
 # install composer #
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
-WORKDIR /api
+WORKDIR /site/api

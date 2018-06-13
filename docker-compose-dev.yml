@@ -18,7 +18,7 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_TYPE=${DB_TYPE}
     volumes:
-      - "./api:/api"
+      - "./site:/site"
       - "./docker/nginx:/etc/nginx"
     networks:
       backend:
@@ -28,7 +28,7 @@ services:
   php:
     build: "./docker/php"
     volumes:
-      - "./api:/api"
+      - "./site:/site"
     environment:
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
