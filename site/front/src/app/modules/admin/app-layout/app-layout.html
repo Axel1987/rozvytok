@@ -1,0 +1,81 @@
+<div id="page-wrapper" ng-class="{'open': toggle}">
+	<div id="sidebar-wrapper">
+		<ul class="sidebar">
+			<li class="sidebar-main">
+				<a ng-click="toggleSidebar()">
+					Rozvyt'OK :)
+					<span class="menu-icon glyphicon glyphicon-transfer"></span>
+				</a>
+			</li>
+			<li class="sidebar-title"><span>Меню:</span></li>
+			<li class="sidebar-list">
+				<a ui-sref="router.app-layout.dashboard" ui-sref-active="">
+					Главная
+					<span class="menu-icon fa fa-tachometer"></span>
+				</a>
+			</li>
+			<li class="sidebar-list">
+				<a ui-sref="router.app-layout.users" ui-sref-active="">
+					Команда
+					<span class="menu-icon fa fa-tachometer"></span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!-- End Sidebar -->
+	<div id="content-wrapper">
+		<div class="page-content">
+
+			<!-- Header Bar -->
+			<div class="row header">
+				<div class="col-xs-12">
+					<div class="user pull-right">
+						<div class="item dropdown" uib-dropdown>
+							<a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+							</a>
+							<ul class="dropdown-menu dropdown-menu-right">
+								<li class="dropdown-header">
+									Test user
+								</li>
+								<li class="divider"></li>
+								<li class="link">
+									<a ui-sref="">
+										Profile
+									</a>
+								</li>
+								<li class="divider"></li>
+								<li class="link">
+									<a ui-sref="">
+										Logout
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="item dropdown" uib-dropdown>
+							<a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+								<i class="fa fa-bell-o"></i>
+							</a>
+							<ul class="dropdown-menu dropdown-menu-right">
+								<li class="dropdown-header">
+									Notifications
+								</li>
+								<li class="divider"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="meta">
+						<h4 class="page-caption">
+							<i class="{{ headerClass }}" aria-hidden="true"></i>
+							{{ headerText }}
+						</h4>
+					</div>
+				</div>
+			</div>
+			<!-- End Header Bar -->
+
+			<div ui-view></div>
+
+		</div><!-- End Page Content -->
+	</div><!-- End Content Wrapper -->
+
+</div>

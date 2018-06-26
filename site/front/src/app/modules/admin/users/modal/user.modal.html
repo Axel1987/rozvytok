@@ -1,0 +1,52 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">{{ user.id ? 'Редактирование' : 'Добавление пользователя' }}</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+
+        <div class="form-group">
+            <label for="name">Имя</label>
+            <input id="name" class="form-control" type="text" placeholder="Имя" ng-model="user.name" required>
+            <span class="text-danger" ng-show="errorMessage.name[0]">{{ errorMessage.name[0] }}</span>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Фамилия</label>
+            <input id="surname" class="form-control" type="text" placeholder="Фамилия" ng-model="user.surname" required>
+            <span class="text-danger" ng-show="errorMessage.surname[0]">{{ errorMessage.surname[0] }}</span>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" class="form-control" type="email" placeholder="Email" ng-model="user.email" required>
+            <span class="text-danger" ng-show="errorMessage.email[0]">{{ errorMessage.email[0] }}</span>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Телефон</label>
+            <input id="phone" class="form-control" type="tel" placeholder="Phone" ng-model="user.phone" required>
+            <span class="text-danger" ng-show="errorMessage.phone[0]">{{ errorMessage.phone[0] }}</span>
+        </div>
+
+        <div class="form-group">
+            <label for="city">Город</label>
+            <select id="city" class="form-control" ng-model="user.city_id"
+                    ng-options="city.id as city.name for city in cities" required>
+            </select>
+            <span class="text-danger" ng-show="errorMessage.phone[0]">{{ errorMessage.city[0] }}</span>
+        </div>
+
+        <div class="form-group">
+            <label for="role">Должность</label>
+            <select id="role" class="form-control" ng-model="user.authAssigment.item_name"
+                    ng-options="role.name as role.name for role in roles" required>
+            </select>
+            <span class="text-danger" ng-show="errorMessage.phone[0]">{{ errorMessage.phone[0] }}</span>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="submit()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

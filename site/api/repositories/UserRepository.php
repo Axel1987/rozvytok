@@ -38,10 +38,10 @@ class UserRepository extends User implements IdentityInterface
         $decoded = JWT::decode($token, self::JWT_KEY, array('HS256'));
 
         $condition = [
-            'id' => $decoded["iss"],
-            'name' => $decoded["aud"],
-            'email' => $decoded["iat"],
-            'phone' => $decoded["nbf"],
+            'id' => $decoded->iss,
+            'name' => $decoded->aud,
+            'email' => $decoded->iat,
+            'phone' => $decoded->nbf,
         ];
 
         return self::findOne($condition);

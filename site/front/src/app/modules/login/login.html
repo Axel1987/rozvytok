@@ -1,0 +1,19 @@
+<div class="sign-in">
+    <div class="form">
+        <form class="login-form">
+            <h2>Административная панель Rozvytok</h2>
+
+            <div class="form-group">
+                <input class="form-control" type="email" ng-model="loginData.email" placeholder="E-mail"/>
+            </div>
+
+            <div class="form-group">
+                <input class="form-control"  type="password" ng-model="loginData.password" placeholder="Password"/>
+            </div>
+
+            <span ng-show="errorMessage" class="text-danger">{{ errorMessage }}</span>
+
+            <button ng-click="login()">Авторизация</button>
+        </form>
+    </div>
+</div>

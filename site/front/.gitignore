@@ -1,0 +1,12 @@
+.idea
+/dist/
+!/dist/index.html
+/node_modules/
+/src/app/services/config.js
+/package-lock.json
+!/dist/
+/dist/vendors.min.js
+/dist/assets/
+/dist/bundle.min.css
+/dist/vendors.min.css
+/dist/bundle.min.js

@@ -35,13 +35,16 @@ class LoginAction extends Action
     {
         $params = \Yii::$app->request->getBodyParams();
 
-        $user = $this->getModel()->findByConditions([
-            'email' => $params['email'],
-            'password' => sha1($params['password'])
-        ]);
+        $user = $this->getModel()->find()
+            ->with('authAssigment')
+            ->where([
+                'email' => $params['email'],
+                'password' => sha1($params['password'])
+            ])
+            ->one();
 
-        if(!$user){
-            throw new UnprocessableEntityHttpException('Email of password is incorrect');
+        if (!$user) {
+            throw new UnprocessableEntityHttpException('Email или пароль неверны');
         }
 
         $user->access_token = $user->generateToken();

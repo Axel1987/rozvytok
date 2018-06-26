@@ -39,6 +39,11 @@ class RbacController extends Controller
 
         /** Create Roles */
         /** Role Manager */
+        $superAdmin = $auth->createRole('super-admin');
+        $superAdmin->description = 'Super Administrator';
+        $auth->add($superAdmin);
+
+        /** Role Manager */
         $manager = $auth->createRole('manager');
         $manager->description = 'Manager';
         $auth->add($manager);
@@ -58,9 +63,31 @@ class RbacController extends Controller
          */
 
         /** Admin::User */
-//        $admin_user_index = $auth->createPermission('admin-user:index');
-//        $admin_user_index->description = 'Admin: Get user list ';
-//        $auth->add($admin_user_index);
+        $admin_users = $auth->createPermission('admin-users');
+        $admin_users->description = 'Manage the list of Users';
+        $auth->add($admin_users);
+        /** Admin::City */
+        $admin_cities = $auth->createPermission('admin-cities');
+        $admin_cities->description = 'Manage the list of Cities';
+        $auth->add($admin_cities);
+        /** Admin::Assignment */
+        $admin_assignment = $auth->createPermission('admin-assignment');
+        $admin_assignment->description = 'List of the user roles';
+        $auth->add($admin_assignment);
+
+        /**
+         * Assign permissions to users
+         */
+        /** Super Admin */
+        $auth->addChild($superAdmin, $admin_users);
+        $auth->addChild($superAdmin, $admin_cities);
+        $auth->addChild($superAdmin, $admin_assignment);
+
+        /** Manager */
+        $auth->addChild($manager, $admin_users);
+        $auth->addChild($manager, $admin_cities);
+        $auth->addChild($manager, $admin_assignment);
+
 
         $this->restoreAssignments();
 

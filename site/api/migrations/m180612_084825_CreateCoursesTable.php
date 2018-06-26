@@ -12,6 +12,7 @@ class m180612_084825_CreateCoursesTable extends Migration
     {
         $this->createTable('courses', [
             'id' => $this->primaryKey(),
+            'city_id' => $this->integer()->notNull(),
             'title' => $this->string()->notNull(),
             'background' => $this->string()->notNull(),
             'lecturer_id' => $this->integer()->notNull(),
@@ -19,8 +20,12 @@ class m180612_084825_CreateCoursesTable extends Migration
             'description' => $this->text()->notNull()
         ]);
 
-        $this->addForeignKey('lecturer', 'courses', 'lecturer_id', 'lecturers', 'id');
-        $this->addForeignKey('courses', 'lecturers', 'id', 'courses', 'lecturer_id');
+        $this->addForeignKey('lecturer', 'courses', 'lecturer_id',
+            'lecturers', 'id');
+        $this->addForeignKey('courses', 'lecturers', 'id',
+            'courses', 'lecturer_id');
+        $this->addForeignKey('courseCity', 'courses', 'city_id',
+            'cities', 'id');
     }
 
     public function down()

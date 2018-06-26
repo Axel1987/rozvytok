@@ -16,7 +16,10 @@ return [
     ],[
         'class' => 'yii\rest\UrlRule',
         'controller' => [
-            'admin/course'
+            'admin/course',
+            'admin/user',
+            'admin/cities',
+            'admin/assignment',
         ]
     ],
     /** API ROUTES FOR THE TO SITE  */

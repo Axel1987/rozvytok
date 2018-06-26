@@ -8,7 +8,7 @@ prod: | docker-build docker-up-no-daemon composer-install
 ##### composer #####
 
 composer-install:
-	docker-compose -f docker-compose-${APP_ENV}.yml exec php-fpm composer install
+	docker-compose -f docker-compose-${APP_ENV}.yml exec php composer install
 
 ##### build and up #####
 

@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-lg-12">
+        <button class="btn btn-success" ng-click="create()">Добавить</button>
+    </div>
+
+    <div class="col-lg-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Телефон</th>
+                    <th>Город</th>
+                    <th>Должность</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users track by $index">
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.surname }}</td>
+                    <td>{{ user.phone }}</td>
+                    <td>{{ user.city.name }}</td>
+                    <td>{{ user.authAssigment.item_name }}</td>
+                    <td>
+                        <button class="btn btn-success" ng-click="edit(user)">Редактировать</button>
+                        <button class="btn btn-danger">Удалить</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
